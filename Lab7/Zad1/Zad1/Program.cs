@@ -6,12 +6,12 @@ namespace Zad1
     {
         static void Main(string[] args)
         {
-           // while (true)
-          //  {
+            while (true)
+            {
                 Console.WriteLine("-------------Zad 1 a)----------------");
                 Console.Write("Podaj wejście: ");
-                //string inputItem = Console.ReadLine();
-                string inputItem = "aabecdd";
+                string inputItem = Console.ReadLine();
+                //string inputItem = "aabecdd";
                 string state = "S";
                 Console.WriteLine($"Input: {inputItem}");
                 Console.WriteLine("-------Output-------");
@@ -66,8 +66,7 @@ namespace Zad1
                         break;
                 }
                 Console.WriteLine();
-            Console.ReadKey();
-        }
-       // }
+            }
+       }
     }
 }
