@@ -1,7 +1,10 @@
 ﻿using System;
-using System.Data;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Zad1
+namespace Zad1b
 {
     class Program
     {
@@ -9,47 +12,55 @@ namespace Zad1
         {
             while (true)
             {
-                Console.WriteLine("-------------Zad 1 a)----------------");
+                Console.WriteLine("-------------Zad 1 b)----------------");
                 Console.Write("Podaj wejście: ");
                 string inputItem = Console.ReadLine();
-                //string inputItem = "aabecdd";
-                string state = "S";
+                string state = "A";
                 Console.WriteLine($"Input: {inputItem}");
                 Console.WriteLine("-------Output-------");
                 inputItem = inputItem.ToLower();
-                int endOfInputItem = inputItem.Length - 1;
                 for (int i = 0; i < inputItem.Length; i++)
                 {
-                    
-                    switch (state)
+                    switch (inputItem[i])
                     {
-                        case "S":
-                            if (inputItem[i] == 'a' && inputItem[endOfInputItem - i] == 'd')
+                        case 'a':
+                            if (state == "B")
                             {
-                                state = "S";
+                                state = "END";
+                                i = inputItem.Length;
                             }
                             else
                             {
-                                state = "B";
-                                i--;
+                                state = "A";
                             }
                             break;
-                        case "B":
-                            if (inputItem[i] == 'b' && inputItem[endOfInputItem - i] == 'c')
+                        case 'x':
+                            if (state == "A")
                             {
                                 state = "B";
-                                if (i+1 >= inputItem.Length/2) state = "ACCEPT";
                             }
                             else
                             {
-                                if (inputItem[i] == 'e' & inputItem.Length / 2 == i | i == Convert.ToInt32(Math.Ceiling((double)inputItem.Length / 2)))
+                                if (i == inputItem.Length - 1)
                                 {
                                     state = "ACCEPT";
                                 }
                                 else
                                 {
                                     state = "END";
+                                    i = inputItem.Length;
                                 }
+                            }
+                            break;
+                        case 'b':
+                            if (state == "A")
+                            {
+                                state = "END";
+                                i = inputItem.Length;
+                            }
+                            else
+                            {
+                                state = "B";
                             }
                             break;
                     }
@@ -68,6 +79,6 @@ namespace Zad1
                 }
                 Console.WriteLine();
             }
-       }
+        }
     }
 }
