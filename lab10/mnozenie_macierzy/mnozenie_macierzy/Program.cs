@@ -12,14 +12,15 @@ namespace mnozenie_macierzy
     {
         static void Main(string[] args)
         {
-            int[] tab1 = new int[] {1, 0, 2, -1 , 3, 1};
-            int[] tab2 = new int[] {3,1,2,1,1,0 };
-            int[,] tab11 = new int[,] { {1,0,2},{ -1, 3, 1 } };
-            int[,] tab22 = new int[,] { {3, 1 }, { 2, 1 }, { 1, 0 } };
-            MultiplyMatrix2(tab1,tab2);
-            //// ---------------------
+            int[] tab1 = {1, 0, 2, -1 , 3, 1};
+            int[] tab2 = {3,1,2,1,1,0 };
+            int[,] tab11 = { {1,0,2},{ -1, 3, 1 } };
+            int[,] tab22 = { {3, 1 }, { 2, 1 }, { 1, 0 } };
+            Console.WriteLine("-----");
+            MultiplyMatrix2(tab1,tab2,3,2);
             Console.WriteLine("-----");
             MultiplyMatrix(tab11,tab22);
+            #region Stopwatches
             //var stopwatch4 = new Stopwatch();
             //stopwatch4.Start();
             //MultiplyMatrix2(FilledTableOneDimm(10), FilledTableOneDimm(10));
@@ -52,7 +53,7 @@ namespace mnozenie_macierzy
             //MultiplyMatrix(FilledTable(1000), FilledTable(1000));
             //stopwatch2.Stop();
             //Console.WriteLine("Czas 1000x1000 = " + stopwatch2.ElapsedMilliseconds + " ms");
-            
+            #endregion
             Console.ReadKey();
         }
 
@@ -83,25 +84,26 @@ namespace mnozenie_macierzy
         
 
 
-        static void MultiplyMatrix2(int[] a, int[] b)
+        static void MultiplyMatrix2(int[] a, int[] b, int columnsA, int columnsB)
         {
-            int[] c = new int[1000];
-            int rowLength = (int)Math.Sqrt(a.Length);
+            int[] c = new int[columnsB * columnsB];
+            int resultMatrIndex = 0;
+            int j = 0;
             if (a.Length == b.Length)
             {
-                c = new int[a.GetLength(0)];
                 for (int i = 0; i < a.Length ; i++)
                 {
-                    for (int j = 0; j < b.Length; j+=rowLength)
+                    if (i >= columnsA && resultMatrIndex + columnsB < columnsB*columnsB)
                     {
-                            c[i] = c[i] + a[i] * b[j];
+                        resultMatrIndex += columnsB;
+                        j = 0;
                     }
-                                
+                        for (int k = 0; k < columnsB; k++)
+                        {
+                            c[resultMatrIndex + k] += a[i] * b[j + k];
+                        }
+                        j += columnsB;
                 }
-                //Matrix matrix1 = new Matrix(5, 10, 15, 20, 25, 30);
-                //Matrix matrix2 = new Matrix(2, 4, 6, 8, 10, 12);
-                //// matrixResult is equal to (70,100,150,220,240,352) 
-                //Matrix matrixResult = Matrix.Multiply(matrix1, matrix2);
             }
             else
             {
