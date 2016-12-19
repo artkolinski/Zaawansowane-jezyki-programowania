@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace mnozenie_macierzy
 {
@@ -32,26 +27,26 @@ namespace mnozenie_macierzy
             MultiplyMatrix(tab33, tab44);
             Console.WriteLine();
             Console.WriteLine("-- 1 wymiar --");
-            MultiplyMatrix2(tab1, tab2, 2);
+            MultiplyMatrixOneDimm(tab1, tab2, 2);
             Console.WriteLine("-----");
-            MultiplyMatrix2(tab3, tab4, 3);
+            MultiplyMatrixOneDimm(tab3, tab4, 3);
         }
         static void StopWatches()
         {
             Console.WriteLine("Pomiar czasu dla mnożenia macierzy jedno wymiarowych");
             var stopwatch = new Stopwatch();
                 stopwatch.Start();
-                MultiplyMatrix2(FilledTableOneDimm(10), FilledTableOneDimm(10),10);
+                MultiplyMatrixOneDimm(FilledTableOneDimm(10), FilledTableOneDimm(10),10);
                 stopwatch.Stop();
                 Console.WriteLine("Czas 10x10 = " + stopwatch.ElapsedMilliseconds + " ms");
             stopwatch.Reset();
                 stopwatch.Start();
-                MultiplyMatrix2(FilledTableOneDimm(100), FilledTableOneDimm(100),100);
+                MultiplyMatrixOneDimm(FilledTableOneDimm(100), FilledTableOneDimm(100),100);
                 stopwatch.Stop();
                 Console.WriteLine("Czas 100x100 = " + stopwatch.ElapsedMilliseconds + " ms");
             stopwatch.Reset();
                 stopwatch.Start();
-                MultiplyMatrix2(FilledTableOneDimm(1000), FilledTableOneDimm(1000), 1000);
+                MultiplyMatrixOneDimm(FilledTableOneDimm(1000), FilledTableOneDimm(1000), 1000);
                 stopwatch.Stop();
                 Console.WriteLine("Czas 1000x1000 = " + stopwatch.ElapsedMilliseconds + " ms");
             Console.WriteLine();
@@ -95,7 +90,7 @@ namespace mnozenie_macierzy
             }
             return tab;
         }
-        static void MultiplyMatrix2(int[] a, int[] b, int columnsB)
+        static void MultiplyMatrixOneDimm(int[] a, int[] b, int columnsB)
         {
             int[] c = new int[columnsB*columnsB];
             int resultMatrIndex = 0;
