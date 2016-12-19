@@ -1,0 +1,9 @@
+http://programmerts.blogspot.com/2014/05/flex-bison-step-by-step-compile-on.html
+
+C:\Program Files\GnuWin32\bin
+C:\Program Files\CodeBlocks\MinGW\bin
+
+flex lextest3.l
+yacc -y -d yacctest3.y
+gcc -c lex.yy.c y.tab.c
+gcc y.tab.o lex.yy.o -o test.exe

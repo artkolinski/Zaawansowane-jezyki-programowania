@@ -63,6 +63,10 @@ namespace Zad1b
                                 state = "B";
                             }
                             break;
+                        default:
+                            state = "END";
+                            i = inputItem.Length;
+                            break;
                     }
                 }
                 switch (state)
