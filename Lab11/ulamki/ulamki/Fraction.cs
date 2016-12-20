@@ -44,6 +44,33 @@
             return result;
         }
 
+        public static Fraction operator *(Fraction a, Fraction b)
+        {
+            Fraction result = new Fraction();
+            result.Numerator = a.Numerator * b.Numerator;
+            result.Denominator = a.Denominator * b.Denominator;
+            return result;
+        }
+
+        public static Fraction Multiply(Fraction a, Fraction b)
+        {
+            Fraction result = new Fraction();
+            result.Numerator = a.Numerator*b.Numerator;
+            result.Denominator = a.Denominator*b.Denominator;
+            return result;
+        }
+        public static Fraction operator /(Fraction a, Fraction b)
+        {
+            Fraction temp = new Fraction(b.Denominator, b.Numerator);
+            return Multiply(a,temp);
+        }
+
+        public static Fraction Division(Fraction a, Fraction b)
+        {
+            Fraction temp = new Fraction(b.Denominator, b.Numerator);
+            return Multiply(a, temp);
+        }
+
         public override string ToString()
         {
             return "(" + Numerator + " / " + Denominator + ")";
