@@ -1,11 +1,12 @@
-﻿
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace ulamki
 {
     public class Program
     {
+        static Random rnd = new Random();
         static void Main()
         {
             var stopwatch = new Stopwatch();
@@ -50,7 +51,33 @@ namespace ulamki
                 Console.WriteLine("Time Division by function = " + stopwatch.ElapsedMilliseconds + " ms");
                 stopwatch.Reset();
             Console.WriteLine();
+            Console.WriteLine("EuklidesNWD = " + EuklidesNWD(3, 9));
+            Console.WriteLine("RND test = " + GenerateRandomFractions() + ", " + GenerateRandomFractions() + ", " + GenerateRandomFractions());
             Console.ReadKey();
+        }
+
+        public static Fraction GenerateRandomFractions()
+        {    
+            int a = rnd.Next(1, 25);
+            int b = rnd.Next(1, 100);
+            do
+            {
+                 b = rnd.Next(1, 100);
+            }
+            while (EuklidesNWD(a, b) > 1);
+            return new Fraction(a, b);
+        }
+
+        public static int EuklidesNWD(int a, int b)
+        {
+            while (a != b)
+            {
+                if (a > b)
+                    a -= b;
+                else
+                    b -= a;
+            }
+            return a;
         }
     }
 }
