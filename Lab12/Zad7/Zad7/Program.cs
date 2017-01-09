@@ -27,9 +27,23 @@ namespace Zad7
 
         static int NWD(int a, int b)
         {
-            while (a != b)
+            while (true)
             {
-                a = a > b ? a -= b : b -= a;
+                if (a > b)
+                {
+                    a -= b;
+                }
+                else
+                {
+                    if (b > a)
+                    {
+                        b -= a;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
             }
             return a;
         }
