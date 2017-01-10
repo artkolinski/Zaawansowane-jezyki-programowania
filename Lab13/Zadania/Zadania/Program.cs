@@ -23,7 +23,11 @@ namespace Zadania
                 Console.WriteLine(a);
             }
             Console.WriteLine();
+            Console.WriteLine("Press any key to see Zad3 ...");
+            Console.ReadKey();
+            Console.Clear();
             Console.WriteLine("Zad3");
+            rysuj(myFunc,5,5,2);
             Console.ReadKey();
         }
 
@@ -51,6 +55,26 @@ namespace Zadania
         static int dodaj(int a, int b)
         {
             return a + b;
+        }
+
+        static void rysuj(Func<int, int> func, int wymiarX, int wymiarY, int skok)
+        {
+            for (int i = 0; i < wymiarX; i++)
+            {
+                drawInConsole(i,func(i));
+                Console.WriteLine($"i={i}, {func(i)}"); // <- there is magic
+            }
+        }
+
+        static void drawInConsole(int x, int y)
+        {
+            Console.SetCursorPosition(Console.CursorTop + x, Console.CursorLeft + y);
+            Console.Write("*");
+        }
+
+        static int myFunc(int x)
+        {
+            return 2*x+1;
         }
 
     }
