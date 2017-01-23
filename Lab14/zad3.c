@@ -12,16 +12,17 @@ int main() {
 	while( ( ch = fgetc(fp) ) != EOF )
       printf("%c",ch);
     fclose(fp);
-	if(fork()==0){
+	if(fork() == 0){
 		printf("\nProces potomny %d\n",getpid());
 		fp = fopen("ala.txt", "r");
 		while( ( ch = fgetc(fp) ) != EOF )
             printf("%c",tolower(ch));
 		fclose(fp);
-		_exit(0);
-	}else{
+		exit(0);
+	}
+	else{
         wait();
 	}
 	printf("\nProces rodzicielski %d\n",getpid());
-return 0;
+    return 0;
 }
